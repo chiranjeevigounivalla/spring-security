@@ -18,12 +18,21 @@ public class UserController {
 	
 	
 	
-	@PostMapping("registory")
+	@PostMapping("/registor")
 	public UsersEntity registration(@RequestBody UsersEntity user) {
 		
 		user.setPassword(encoder.encode(user.getPassword()));
 		service.register(user);
 		return user;
 	}
+	
+	
+	@PostMapping("/login")
+	public String login(@RequestBody UsersEntity user) {
+		System.out.println(user);
+		
+		return service.verify(user);
+	}
+	
 
 }
